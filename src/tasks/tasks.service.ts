@@ -6,7 +6,12 @@ import { Tasks } from './tasks.interface';
 export class TasksService{
     private tasks: Tasks[] = [];
 
-    getTasks(){
+    getAllTasks(){
+      
+        return this.tasks;
+    }
+    
+    getTask(id:number){
       
         return this.tasks;
     }
