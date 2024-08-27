@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Patch, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from "@nestjs/common";
 import { TasksService } from "./tasks.service";
-import { Tasks } from "./tasks.interface";
+import { CreateTasksDto} from "./dto/create-tasks.dto";
 
 @Controller('/tasks')
 export class TasksController{
@@ -9,20 +9,20 @@ export class TasksController{
 
     // Trae todas las tarea 
     @Get()
-    getAllTasks(){
+    getAllTasks(@Query() query:string){
+        console.log(query)
         return this.tasksService.getAllTasks();
     }
 
 
-    @Get()
-    getTask(@Query() id:number){
-        console.log(id);
-        return this.tasksService.getAllTasks();
+    @Get('/:id')
+    getTask(@Param('id') id:string){       
+        return this.tasksService.getTask(parseInt(id));
     }
 
 
     @Post()
-    createTask(@Body() task: Tasks){
+    createTask(@Body() task: CreateTasksDto){
         console.log(task)
         return this.tasksService.createTask(task);
     }
