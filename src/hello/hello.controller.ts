@@ -1,7 +1,9 @@
 import { Controller, Get, HttpCode, Param, ParseBoolPipe, ParseIntPipe, Query, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { ValidateuserPipe } from './pipes/validateuser/validateuser.pipe';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Hello')
 @Controller()
 export class HelloController {
     @Get('/hello')
